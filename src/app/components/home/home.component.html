@@ -1,0 +1,21 @@
+<section id="home">
+    <aside>
+        <input
+        type="text"
+        placeholder="Search by company or job title..."
+        (input)="onSearch($any($event.target).value)"
+        />
+    </aside>
+
+    <div id="article-list">
+        @for (entry of filtered(); track entry.id) {
+        <article (click)="openEntry(entry.id)">
+        <div class="company-name">{{ entry.company }}</div>
+        <div class="job-title">{{ entry.job_title }}</div>
+        <div class="application-date">{{ entry.date }}</div>
+        </article>
+        } @empty {
+        <p>No applications yet — add your first one from the New tab.</p>
+        }
+    </div>
+</section>
