@@ -1,0 +1,63 @@
+<section id="new">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div>
+            <label for="application_date">Date:</label>
+            <input type="date" id="application_date" formControlName="application_date" required />
+        </div>
+
+        <div>
+            <label for="company">Company Name:</label>
+            <input type="text" id="company" formControlName="company" list="company_suggestions" required />
+            <datalist id="company_suggestions">
+                @for (name of companySuggestions(); track name) {
+                <option [value]="name"></option>
+                }
+            </datalist>
+        </div>
+
+        <div>
+            <label for="job_title">Job Title:</label>
+            <input type="text" id="job_title" formControlName="job_title" required />
+        </div>
+
+        <div>
+            <label for="job_posting">Job Posting:</label>
+            <input type="text" id="job_posting" formControlName="job_posting" />
+        </div>
+
+        <div>
+            <label for="contact_info">Contact Information:</label>
+            <input type="tel" id="contact_info" formControlName="contact_info" />
+        </div>
+
+        <div>
+            <label for="status">Status:</label>
+            <select id="status" formControlName="status">
+                <option value="applied">Applied</option>
+                <option value="interviewing">Interviewing</option>
+                <option value="offer">Offer</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+
+        <div>
+        <button type="submit">{{ editId ? 'Save' : 'Add' }}</button>
+        <button type="button" (click)="cancel()">Cancel</button>
+        @if (editId) {
+            <button type="button" class="danger" (click)="delete()">Delete</button>
+        }
+        </div>
+    </form>
+
+@if (editId) {
+    <div id="application_memo_list">
+    @for (memo of memos; track memo.id) {
+        <div class="memo-item">
+        <span class="memo-date">{{ memo.date }}</span><br />
+        {{ memo.content }}
+        <a href="#" (click)="deleteMemo(memo.id); $event.preventDefault()">Delete</a>
+        </div>
+    }
+    </div>
+}
+</section>

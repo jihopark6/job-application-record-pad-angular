@@ -1,0 +1,22 @@
+<section id="memo">
+<article>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+        <label for="job_application">Job Application:</label>
+        <select id="job_application" formControlName="job_application">
+            @for (entry of applications(); track entry.id) {
+            <option [value]="entry.id">{{ entry.company }} - {{ entry.job_title }}</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="memo_content">Memo:</label>
+        <textarea id="memo_content" formControlName="memo_content" required></textarea>
+    </div>
+    <div>
+        <button type="submit">Add Memo</button>
+        <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+    </form>
+</article>
+</section>
