@@ -13,6 +13,7 @@
         <div class="company-name">{{ entry.company }}</div>
         <div class="job-title">{{ entry.job_title }}</div>
         <div class="application-date">{{ entry.date }}</div>
+        <div class="application-status status-{{ entry.status }}">{{ entry.status }}</div>
         </article>
         } @empty {
         <p>No applications yet — add your first one from the New tab.</p>
